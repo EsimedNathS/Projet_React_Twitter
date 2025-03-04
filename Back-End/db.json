@@ -1,0 +1,59 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$7cpCRxeMw8yU.ru9oymV..YLWnQV4NlkfxDmaq3pXAUCmFVMccvaG",
+      "username": "testUser",
+      "follow": 1,
+      "id": 1
+    },
+    {
+      "email": "test@test.fr",
+      "password": "$2a$10$byTzpHJDYwZKSOqX7LOikerhcvwU8fLCNRel58Th91mz3Lm.eqAje",
+      "username": "testUser2",
+      "id": 2
+    }
+  ],
+  "follow": [
+    {
+      "user": 1,
+      "follower": 2
+    }
+  ],
+  "zweez": [
+    {
+      "userId": 1,
+      "username": "testUser",
+      "content": "Coucou je suis developpeur",
+      "like": 0,
+      "time": "today"
+    }
+  ]
+}

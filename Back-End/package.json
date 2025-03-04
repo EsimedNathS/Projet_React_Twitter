@@ -1,0 +1,19 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx json-server db.json -m ./node_modules/json-server-auth",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.6.0",
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
+  }
+}
