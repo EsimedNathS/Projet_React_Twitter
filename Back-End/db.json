@@ -58,16 +58,6 @@
       "userId": 1,
       "followingId": 3,
       "id": 1
-    },
-    {
-      "userId": 1,
-      "followingId": "2",
-      "id": 36
-    },
-    {
-      "userId": 4,
-      "followingId": "1",
-      "id": 38
     }
   ],
   "zweezs": [
@@ -176,6 +166,22 @@
       "userId": 1,
       "zweezId": 7,
       "id": 24
+    }
+  ],
+  "notifications": [
+    {
+      "userId": 1,
+      "notiferId": 2,
+      "type": "like",
+      "time": "2025-03-05T21:43:18.798Z",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "notiferId": 2,
+      "type": "follow",
+      "time": "2025-03-05T21:43:18.798Z",
+      "id": 2
     }
   ]
 }

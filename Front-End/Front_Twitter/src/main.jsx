@@ -7,6 +7,7 @@ import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
 import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
+import Notification from './pages/Notification.jsx';
 import { Provider } from 'react-redux';
 import store from './app/store.js'
 
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/notif" element={<Notification />} />
         </Routes>
       </BrowserRouter>
     </Provider>

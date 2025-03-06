@@ -5,7 +5,7 @@ import { FaHome, FaBell, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import ZweezList from "../domains/zweezs/components.js/ZweezList";
 import FollowingList from "../domains/users/components.jsx/FollowingList";
-import { followUserService, unfollowUserService , getUserService, getFollowService } from "../domains/users/service";
+import { getUserService, getFollowService } from "../domains/users/service";
 import FollowButton from "../domains/users/components.jsx/FollowButton";
 
 function Profile() {
@@ -28,18 +28,14 @@ function Profile() {
     try {
 
       let followData;
-      console.log("main user ? :", profilId == user.id)
       if (profilId == user.id) {
         followData = await getFollowService(profilId);
       } else {
         followData = await getFollowService(profilId, user.id);
       }
       setFollowsInfo(followData);
-      console.log(followData);
-      
 
-      // 🔹 Vérification si l'utilisateur actuel suit déjà le profil affiché
-      const isUserFollowing = followData.followers?.some(f => f.userId === user.id);
+      const isUserFollowing = followData.isMainUserFollowing;
       setIsFollowing(isUserFollowing);
     } catch (error) {
       console.error("Erreur lors de la récupération des follows:", error);
@@ -48,14 +44,7 @@ function Profile() {
 
   const handleFollow = async () => {
     try {
-      if (isFollowing) {
-        await unfollowUserService(user.id, profilId);
-        setIsFollowing(false);
-      } else {
-        await followUserService(user.id, profilId);
-        setIsFollowing(true);
-      }
-      getFollow(); // 🔹 Rafraîchir les données après follow/unfollow
+      getFollow();
     } catch (error) {
       console.error("Erreur lors du suivi/désabonnement:", error);
     }
@@ -94,9 +83,8 @@ function Profile() {
         <div className="flex items-center gap-4 mb-3">
           <h1 className="text-4xl font-bold">{profilId == user.id ? user.username : username}</h1>
 
-          {/* 🔹 Bouton Follow / Unfollow avec état initial mis à jour */}
           {profilId != user.id && (
-            <FollowButton profilId={profilId} isFollowing={isFollowing} onFollowToggle={handleFollow} />
+            <FollowButton profilId={profilId} isFollowing={isFollowing} refreshFollows={handleFollow} />
           )}
         </div>
 

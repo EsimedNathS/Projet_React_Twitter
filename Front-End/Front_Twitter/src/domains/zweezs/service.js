@@ -1,3 +1,4 @@
+import { createNotification } from "../notifications/api";
 import { addZweez, supZweez, modifZweez, getZweezList, getZweezListUser, addLikeZweez, supLikeZweez } from "./api";
 
 export async function getZweezListService() {
@@ -7,6 +8,7 @@ export async function getZweezListService() {
 
 export async function addZweezService(content, userId, username) {
     const zweezList = await addZweez(content, userId, username);
+    await createNotification(zweezOwnerId, userId, "like");
     return zweezList;
 }
 

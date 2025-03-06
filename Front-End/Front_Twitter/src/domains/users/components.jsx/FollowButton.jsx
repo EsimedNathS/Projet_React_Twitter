@@ -2,22 +2,18 @@ import React, { useState, useEffect } from "react";
 import { followUserService, unfollowUserService } from "../service";
 import { useSelector } from "react-redux";
 
-function FollowButton({ profilId, initialIsFollowing, refreshFollows }) {
-  const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
+function FollowButton({ profilId, isFollowing =false , refreshFollows }) {
   const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    setIsFollowing(initialIsFollowing);
-  }, [initialIsFollowing]);
 
   const handleFollow = async () => {
     try {
       if (isFollowing) {
+        console.log("j'enleve le follow");
         await unfollowUserService(user.id, profilId);
       } else {
         await followUserService(user.id, profilId);
       }
-      setIsFollowing(!isFollowing);
+      isFollowing = !isFollowing
       refreshFollows(); // Actualiser la liste des follows
     } catch (error) {
       console.error("Erreur lors du follow/unfollow:", error);

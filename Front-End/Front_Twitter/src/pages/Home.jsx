@@ -30,6 +30,7 @@ function Home() {
 
         <button 
           className="flex items-center gap-3 text-lg w-full justify-start px-4 py-2 border-2 border-transparent hover:text-gray-400"
+          onClick={() => navigate("/notif")}
         >
           <FaBell size={20} />
           <span>Notification</span>

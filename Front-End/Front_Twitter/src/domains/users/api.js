@@ -43,21 +43,27 @@ export async function getFollower(userId) {
     }
 }
 
-export async function unfollowUser(userId, followingId) {
+export async function getFollowId(userId, followingId) {
     try {
         const response = await axiosInstance.get(`follows?userId=${userId}&followingId=${followingId}`);
 
         if (response.data.length === 0) {
-            return { success: false, message: "Like non trouvé" };
+            return null; 
         }
-        const followId = response.data[0].id;
 
-        await axiosInstance.delete(`follows/${followId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        return response.data[0].id;
+    } catch (error) {
+        console.error("Erreur lors de la récupération du follow:", error);
+        throw error;
+    }
+}
 
+export async function deleteFollow(followId) {
+    try {
+        await axiosInstance.delete(`follows/${followId}`);
         return { success: true, message: "Follow supprimé" };
     } catch (error) {
+        console.error("Erreur lors de la suppression du follow:", error);
         return { success: false, message: "Erreur serveur" };
     }
 }

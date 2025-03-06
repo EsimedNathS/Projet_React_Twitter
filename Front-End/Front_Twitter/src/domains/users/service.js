@@ -1,14 +1,24 @@
-import { getUser, followUser, unfollowUser, getFollow, getFollower } from "./api";
-
+import { createNotification } from "../notifications/api";
+import { getUser, followUser, deleteFollow, getFollow, getFollowId, getFollower } from "./api";
 
 export async function followUserService(userId, followingId) {
     const resultFollow = await followUser(userId, followingId);
+    await createNotification(zweezOwnerId, userId, "follow");
     return resultFollow;
 }
 
 export async function unfollowUserService(userId, followingId) {
-    const resultUnfollow = await unfollowUser(userId, followingId);
-    return resultUnfollow;
+    try {
+        const followId = await getFollowId(userId, followingId);
+
+        if (!followId) {
+            return { success: false, message: "Follow non trouvé" };
+        }
+
+        return await deleteFollow(followId);
+    } catch (error) {
+        return { success: false, message: "Erreur serveur" };
+    }
 }
 
 export async function getFollowService(userId, mainUserId = null) {
@@ -17,17 +27,12 @@ export async function getFollowService(userId, mainUserId = null) {
         const followers = await getFollower(userId);
         const followerIds = follows.map(follow => follow.followingId); // Liste des follows
 
-        console.log(follows);
-        console.log(followers);
-        console.log(userId);
-        console.log(mainUserId);
-
         // Récupération des infos des utilisateurs qui suivent `userId`
         const followData = await Promise.all(followerIds.map(id => getUser(id)));
 
         // Vérification si `mainUserId` suit `userId`
         const isMainUserFollowing = mainUserId 
-            ? followers.some(follower => follower.followerId === mainUserId)
+            ? followers.some(follower => follower.userId === mainUserId)
             : false;
 
         return {
