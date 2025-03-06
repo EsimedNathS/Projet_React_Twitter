@@ -12,10 +12,11 @@ export async function signup(email, password) {
     return response.data;
 }
 
-export async function login(email, password) {
+export async function login(email, password, username) {
     const response = await axiosInstance.post('login', {
         email: email,
-        password: password
+        password: password,
+        username: username
     });
     return response.data;
 }

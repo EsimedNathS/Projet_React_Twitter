@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 
 function Signup() {
 
+    const [username, setUsername] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [emailError, setEmailError] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -21,7 +22,7 @@ function Signup() {
         setIsLoading(true);
         if (validatePassword() && validateEmail()){
             try {
-                const userData = await signupService(email, password);
+                const userData = await signupService(email, password, username);
                 console.log("signup");
                 navigate("/home");
             }
@@ -104,7 +105,7 @@ function Signup() {
                     <TextField 
                         label="username" 
                         variant="outlined" 
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setUsername(e.target.value)}
                         sx={{
                             "& .MuiOutlinedInput-root": {
                                 "& fieldset": { 

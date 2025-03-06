@@ -11,14 +11,15 @@ const authSlice = createSlice({
     name: 'authentification',
     initialState: {     
         isConnected : false,
-        token : 0
+        token : localStorage.getItem("token")
     },
     reducers: {
-        setToken: (state, action) => {
-            state = state.push(
-                isConnected = true,
-                token = action.payload
-            )
+        setIsConnected: (state, action) => {
+            state.isConnected  = action.payload
+        },
+        disconnect: (state) => {
+            state.isConnected = false
+            token = null
         }
     },
     extraReducers: (builder) => {
@@ -30,5 +31,5 @@ const authSlice = createSlice({
     }
 });
 
-export const { replaceToken } = authSlice.actions;
+export const { replaceToken, setIsConnected} = authSlice.actions;
 export default authSlice.reducer;

@@ -39,21 +39,143 @@
       "password": "$2a$10$byTzpHJDYwZKSOqX7LOikerhcvwU8fLCNRel58Th91mz3Lm.eqAje",
       "username": "testUser2",
       "id": 2
-    }
-  ],
-  "follow": [
+    },
     {
-      "user": 1,
-      "follower": 2
+      "email": "test@test.fr",
+      "password": "$2a$10$byTzpHJDYwZKSOqX7LOikerhcvwU8fLCNRel58Th91mz3Lm.eqAje",
+      "username": "MathieuLooser",
+      "id": 3
+    },
+    {
+      "email": "ceciliouche.@gmail.com",
+      "password": "$2a$10$lz62XkNIDRIAZrV.syySc.rXavg6WknB2T8s88TegKlHJkHQ/Y/7C",
+      "username": "ceciliouche",
+      "id": 4
     }
   ],
-  "zweez": [
+  "follows": [
+    {
+      "userId": 1,
+      "followingId": 3,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "followingId": "2",
+      "id": 36
+    },
+    {
+      "userId": 4,
+      "followingId": "1",
+      "id": 38
+    }
+  ],
+  "zweezs": [
+    {
+      "userId": 2,
+      "username": "testUser2",
+      "content": "Ca code un max ou bien?",
+      "time": "2025-01-04T22:46:22.137Z",
+      "id": 2
+    },
     {
       "userId": 1,
       "username": "testUser",
-      "content": "Coucou je suis developpeur",
-      "like": 0,
-      "time": "today"
+      "content": "beau zwweeeez",
+      "time": "2025-03-04T22:46:22.137Z",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "username": "testUser",
+      "content": "Et de un en plus",
+      "time": "2025-03-05T08:41:14.152Z",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "username": "testUser",
+      "content": "En vrai twitter c'est pas si ouf",
+      "time": "2025-03-05T17:50:59.650Z",
+      "id": 6
+    },
+    {
+      "userId": 4,
+      "username": "ceciliouche",
+      "content": "je mange des zweezs au petit dej",
+      "time": "2025-03-05T21:40:32.861Z",
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "username": "ceciliouche",
+      "content": "bientoto dodo",
+      "time": "2025-03-05T21:43:18.798Z",
+      "id": 8
+    },
+    {
+      "userId": 4,
+      "username": "ceciliouche",
+      "content": "miam les burrito",
+      "time": "2025-03-05T21:43:39.587Z",
+      "id": 9
+    }
+  ],
+  "likes": [
+    {
+      "userId": 1,
+      "zweezId": 4,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "zweezId": 5,
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "zweezId": 5,
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "zweezId": 2,
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "zweezId": 2,
+      "id": 16
+    },
+    {
+      "userId": 4,
+      "zweezId": 6,
+      "id": 17
+    },
+    {
+      "userId": 4,
+      "zweezId": 2,
+      "id": 19
+    },
+    {
+      "userId": 4,
+      "zweezId": 5,
+      "id": 21
+    },
+    {
+      "userId": 4,
+      "zweezId": 8,
+      "id": 22
+    },
+    {
+      "userId": 4,
+      "zweezId": 7,
+      "id": 23
+    },
+    {
+      "userId": 1,
+      "zweezId": 7,
+      "id": 24
     }
   ]
 }

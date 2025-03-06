@@ -17,7 +17,7 @@ function FirstPage() {
         </div>
 
         <div className="w-1/2 flex flex-col justify-center items-center">
-            <h1 className="text-6xl font-bold text-black mb-8">Bienvenue</h1>
+            <h1 className="text-6xl font-bold text-black mb-8">Welcome</h1>
             
             <div className="flex gap-4">
                 <button 
