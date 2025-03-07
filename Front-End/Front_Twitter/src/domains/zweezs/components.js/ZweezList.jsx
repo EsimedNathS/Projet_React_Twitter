@@ -11,6 +11,8 @@ function ZweezList({ userId = null, sortMode }) {
   const [zweezList, setZweezList] = useState([]);
   const [followData, setFollowData] = useState(null);
 
+  console.log("la zweeeeeeeeeeeeeeeeeeeeeeeeeez lsite");
+
   // **1. Récupération des Zweezs**
   const fetchZweezs = async () => {
     try {

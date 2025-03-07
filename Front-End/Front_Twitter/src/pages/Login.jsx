@@ -24,6 +24,7 @@ function Login() {
                 if (rememberMe) {
                     localStorage.setItem("token", token);
                 }
+                console.log("Navigation vers /home")
                 navigate("/home");
             } 
         } catch (error) {

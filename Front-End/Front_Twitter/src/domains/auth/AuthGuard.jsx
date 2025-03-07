@@ -19,6 +19,7 @@ const AuthGuard = (WrappedComponent) => {
                 if (token) {
                     try {
                         const userData = await verifytokenService(token);
+                        console.log(userData);
                         dispatch(setUser({ 
                             username: userData.username, 
                             id: userData.id 

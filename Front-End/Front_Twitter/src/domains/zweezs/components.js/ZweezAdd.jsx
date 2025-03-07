@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { addZweezService } from '../service';
+import { toast } from "react-toastify";
 
 function ZweezAdd() {
     const [content, setContent] = useState(""); // État du texte
@@ -13,6 +14,7 @@ function ZweezAdd() {
         setIsPublishing(true); // On commence la publication
         try {
             const response = await addZweezService(content, user.id, user.username);
+            toast.success("publie");
             setContent(""); // Réinitialise le champ après publication
         } catch (error) {
             console.error("Erreur lors de la publication :", error);

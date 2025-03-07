@@ -10,6 +10,7 @@ import Profile from './pages/Profile.jsx';
 import Notification from './pages/Notification.jsx';
 import { Provider } from 'react-redux';
 import store from './app/store.js'
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/notif" element={<Notification />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer/>
     </Provider>
   </StrictMode>,
 )

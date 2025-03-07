@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { FaHeart, FaRetweet, FaComment, FaEllipsisH, FaTrashAlt, FaEdit, FaArrowLeft } from "react-icons/fa";
+import { FaHeart, FaEllipsisH, FaTrashAlt, FaEdit } from "react-icons/fa";
 import { addLikeZweezService, supLikeZweezService, supZweezService, modifZweezService } from "../service";
 import { useNavigate } from "react-router";
 import AuthGuard from "../../auth/AuthGuard";
@@ -12,10 +12,12 @@ function ZweezItem({ zweez, onUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(zweez.content);
   const navigate = useNavigate();
-
-  const userHasLiked = zweez.likes?.some((like) => like.userId === userData.id);
-  const [isLiked, setIsLiked] = useState(userHasLiked);
+  const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(zweez.likes?.length || 0);
+
+  useEffect(() =>{
+    setIsLiked(zweez.likes?.some((like) => like.userId === userData.id));
+  }, [userData]);
 
   const handleLike = async () => {
     if (!token || !userData.id) return;
