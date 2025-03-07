@@ -1,5 +1,5 @@
-import { createNotification } from "../notifications/api";
-import { addZweez, supZweez, modifZweez, getZweezList, getZweezListUser, addLikeZweez, supLikeZweez } from "./api";
+import { createNotificationService } from "../notifications/service";
+import { addZweez, supZweez, modifZweez, getZweezList, getZweezListUser, addLikeZweez, supLikeZweez, getZweez, getLikeId } from "./api";
 
 export async function getZweezListService() {
     const zweezList = await getZweezList();
@@ -8,7 +8,6 @@ export async function getZweezListService() {
 
 export async function addZweezService(content, userId, username) {
     const zweezList = await addZweez(content, userId, username);
-    await createNotification(zweezOwnerId, userId, "like");
     return zweezList;
 }
 
@@ -29,10 +28,15 @@ export async function getZweezListUserService(userId) {
 
 export async function addLikeZweezService(userId, zweezId) {
     const responseLike = await addLikeZweez(userId, zweezId);
+    const zweezData = await getZweez(zweezId);
+    if (zweezData[0].userId != userId) {
+        const responseNotif = await createNotificationService(zweezData[0].userId, userId, "like")
+    }
     return responseLike;
 }
 
 export async function supLikeZweezService(userId, zweezId) {
-    const responseLike = await supLikeZweez(userId, zweezId);
+    const likeData = await getLikeId(userId, zweezId);
+    const responseLike = await supLikeZweez(likeData[0].id);
     return responseLike;
 }

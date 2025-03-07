@@ -5,6 +5,7 @@ import ZweezList from "../domains/zweezs/components.js/ZweezList";
 import { FaHome, FaBell, FaUser } from "react-icons/fa";
 import ZweezAdd from "../domains/zweezs/components.js/ZweezAdd";
 import { useSelector } from "react-redux";
+import NavBar from "./components/NavBar";
 
 function Home() {
   const [selectedTab, setSelectedTab] = useState("forYou");
@@ -13,37 +14,7 @@ function Home() {
 
   return (
     <div className="flex min-h-screen">
-      <aside className="w-1/4 bg-black text-white p-6 flex flex-col gap-6 items-center">
-        <img 
-          src={imageZB}
-          alt="Logo"
-          className="w-12 h-12 object-cover mb-6"
-        />
-
-        <button 
-          className="flex items-center gap-3 text-lg w-full justify-start px-4 py-2 border-2 rounded font-bold 
-                    bg-white text-black border-white"
-        >
-          <FaHome size={20} className="text-black" />
-          <span>Home</span>
-        </button>
-
-        <button 
-          className="flex items-center gap-3 text-lg w-full justify-start px-4 py-2 border-2 border-transparent hover:text-gray-400"
-          onClick={() => navigate("/notif")}
-        >
-          <FaBell size={20} />
-          <span>Notification</span>
-        </button>
-
-        <button 
-          className="flex items-center gap-3 text-lg w-full justify-start px-4 py-2 border-2 border-transparent hover:text-gray-400"
-          onClick={() => navigate(`/profile/${user.id}`)}
-        >
-          <FaUser size={20} />
-          <span>Profile</span>
-        </button>
-      </aside>
+      <NavBar page="Home"/>
 
 
       <main className="flex-1 border-x border-gray-700 bg-gray-100">

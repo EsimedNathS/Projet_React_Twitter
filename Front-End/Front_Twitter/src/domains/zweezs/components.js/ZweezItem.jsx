@@ -141,17 +141,17 @@ function ZweezItem({ zweez, onUpdate }) {
             )}
 
 
-            <div className="flex justify-between mt-3 text-gray-500">
-                <button
-                    className={`flex items-center gap-1 transition ${
-                    isLiked ? "text-red-500" : "hover:text-red-500"
-                    }`}
-                    onClick={handleLike}
-                >
-                    <FaHeart className="text-lg" />
-                    <span className="w-6 text-center">{likeCount}</span>
-                </button>
-            </div>
+          <div className="flex justify-between mt-3 text-gray-500">
+              <button
+                  className={`flex items-center gap-1 transition ${
+                      isLiked ? "text-red-500" : "hover:text-red-300"
+                  }`}
+                  onClick={handleLike}
+              >
+                  <FaHeart className="text-lg" />
+                  <span className="w-6 text-center">{likeCount}</span>
+              </button>
+          </div>
         </div>
     </div>
   );

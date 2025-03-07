@@ -51,13 +51,84 @@
       "password": "$2a$10$lz62XkNIDRIAZrV.syySc.rXavg6WknB2T8s88TegKlHJkHQ/Y/7C",
       "username": "ceciliouche",
       "id": 4
+    },
+    {
+      "email": "Hug@mail.com",
+      "password": "$2a$10$WwC8Ort35fYFt3DHjaV6zOjgL.pvgH5LhP.367Kgjf5siUY42JIq2",
+      "username": "Hug",
+      "id": 5
+    },
+    {
+      "email": "Hug@maile.com",
+      "password": "$2a$10$JUE/458aGTQ7eJH7sfTPeuTiHSfOkCmJsDPpYqy9kNP8pakC0r/Oq",
+      "username": "Hug",
+      "id": 6
+    },
+    {
+      "email": "Hug@mail.comm",
+      "password": "$2a$10$R5ANzJeAZwt2eaLKNWs0g.r9rMbIutSIOq1ozD9m9.tD9.wN7XH1y",
+      "username": "Hug",
+      "id": 7
+    },
+    {
+      "email": "Hug@mail.commm",
+      "password": "$2a$10$5ccL9oRA9uj3xl3voo17WuqamUpZ/BXAJJzfEuDF8Ecu/dumqnS9m",
+      "username": "Hug",
+      "id": 8
+    },
+    {
+      "email": "Hug@mail.sus",
+      "password": "$2a$10$V.GwbxkZhfWrtSPD5Qxl9.mXRB2j48/U9r12RL8/tJGteeXTwS8ai",
+      "username": "Hug",
+      "id": 9
+    },
+    {
+      "email": "Hug@truc.fr",
+      "password": "$2a$10$CrbpAwXGjCkVRcihc75IzuYsmAoRZZF0CnBuICfOwguBt4D6Hg.kC",
+      "username": "Hug",
+      "id": 10
+    },
+    {
+      "email": "Hug@maoil.com",
+      "password": "$2a$10$srw0pmcxwJc2bulXxnORi.GzL27T3ewr3QEMBzQl7A0l4MovyrCx2",
+      "username": "Hug",
+      "id": 11
+    },
+    {
+      "email": "Moi@maoil.com",
+      "password": "$2a$10$yyLx5kV87qNppdWo8n5DFeEDHDaUC5z1Tgl0H3ypBAWN7n1iEILmO",
+      "username": "Moi",
+      "id": 12
+    },
+    {
+      "email": "azerty@1.com",
+      "password": "$2a$10$tFWDFARM5rzxkUfAKfsEGekN49jQrE494HFK/q.p8JT.TKR.ok7YK",
+      "username": "azerty@1",
+      "id": 13
+    },
+    {
+      "email": "azerty@1.fr",
+      "password": "$2a$10$/Qh/P0WYxoXpZIcCWojGOuxbkAz6bOa9/Dw5nS5vnoJCayeQxYjNK",
+      "username": "azerty@1",
+      "id": 14
+    },
+    {
+      "email": "azerty@1.fra",
+      "password": "$2a$10$JdtNt1DMrQJMlSKzc1f/mefBonGyno02VYTOYSvuG8x1vn2gYfFIG",
+      "username": "azerty@1",
+      "id": 15
     }
   ],
   "follows": [
     {
       "userId": 1,
-      "followingId": 3,
-      "id": 1
+      "followingId": "4",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "followingId": "3",
+      "id": 3
     }
   ],
   "zweezs": [
@@ -74,13 +145,6 @@
       "content": "beau zwweeeez",
       "time": "2025-03-04T22:46:22.137Z",
       "id": 4
-    },
-    {
-      "userId": 1,
-      "username": "testUser",
-      "content": "Et de un en plus",
-      "time": "2025-03-05T08:41:14.152Z",
-      "id": 5
     },
     {
       "userId": 1,
@@ -107,8 +171,22 @@
       "userId": 4,
       "username": "ceciliouche",
       "content": "miam les burrito",
-      "time": "2025-03-05T21:43:39.587Z",
+      "time": "2025-03-01T21:43:39.587Z",
       "id": 9
+    },
+    {
+      "userId": 1,
+      "username": "testUser",
+      "content": "Test de zweez",
+      "time": "2025-03-06T15:19:43.108Z",
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "username": "testUser",
+      "content": "new zweez",
+      "time": "2025-03-07T08:28:51.800Z",
+      "id": 11
     }
   ],
   "likes": [
@@ -116,21 +194,6 @@
       "userId": 1,
       "zweezId": 4,
       "id": 10
-    },
-    {
-      "userId": 1,
-      "zweezId": 5,
-      "id": 13
-    },
-    {
-      "userId": 1,
-      "zweezId": 5,
-      "id": 14
-    },
-    {
-      "userId": 1,
-      "zweezId": 2,
-      "id": 15
     },
     {
       "userId": 1,
@@ -149,11 +212,6 @@
     },
     {
       "userId": 4,
-      "zweezId": 5,
-      "id": 21
-    },
-    {
-      "userId": 4,
       "zweezId": 8,
       "id": 22
     },
@@ -166,22 +224,99 @@
       "userId": 1,
       "zweezId": 7,
       "id": 24
+    },
+    {
+      "userId": 1,
+      "zweezId": 9,
+      "id": 25
+    },
+    {
+      "userId": 1,
+      "zweezId": 9,
+      "id": 26
+    },
+    {
+      "userId": 1,
+      "zweezId": 7,
+      "id": 28
+    },
+    {
+      "userId": 1,
+      "zweezId": 7,
+      "id": 29
+    },
+    {
+      "userId": 1,
+      "zweezId": 7,
+      "id": 30
+    },
+    {
+      "userId": 1,
+      "zweezId": 7,
+      "id": 31
+    },
+    {
+      "userId": 1,
+      "zweezId": 2,
+      "id": 37
     }
   ],
   "notifications": [
     {
       "userId": 1,
-      "notiferId": 2,
+      "notifierId": 2,
       "type": "like",
       "time": "2025-03-05T21:43:18.798Z",
       "id": 1
     },
     {
       "userId": 1,
-      "notiferId": 2,
+      "notifierId": 2,
       "type": "follow",
       "time": "2025-03-05T21:43:18.798Z",
       "id": 2
+    },
+    {
+      "userId": 4,
+      "notifierId": 1,
+      "type": "follow",
+      "time": "2025-03-06T18:43:57.385Z",
+      "id": 3
+    },
+    {
+      "userId": 4,
+      "notifierId": 1,
+      "type": "like",
+      "time": "2025-03-06T19:20:26.238Z",
+      "id": 6
+    },
+    {
+      "userId": 4,
+      "notifierId": 1,
+      "type": "like",
+      "time": "2025-03-06T19:20:28.007Z",
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "notifierId": 1,
+      "type": "like",
+      "time": "2025-03-06T19:46:27.071Z",
+      "id": 8
+    },
+    {
+      "userId": 4,
+      "notifierId": 1,
+      "type": "like",
+      "time": "2025-03-06T19:46:36.677Z",
+      "id": 9
+    },
+    {
+      "userId": "3",
+      "notifierId": 1,
+      "type": "follow",
+      "time": "2025-03-07T08:07:15.182Z",
+      "id": 10
     }
   ]
 }

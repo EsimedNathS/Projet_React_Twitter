@@ -2,8 +2,9 @@ import React from "react";
 import TextField from '@mui/material/TextField';
 import imageZB from '../assets/Logo_Z_B.png';
 import { CircularProgress } from "@mui/material";
-import { signupService } from "../domains/auth/service";
 import { useNavigate } from "react-router";
+import { signUp } from "../domains/auth/slice";
+import { useDispatch } from "react-redux";
 
 function Signup() {
 
@@ -15,22 +16,23 @@ function Signup() {
     const [passwordError, setPasswordError] = React.useState('');
     const [isLoading, setIsLoading] = React.useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         if (validatePassword() && validateEmail()){
-            try {
-                const userData = await signupService(email, password, username);
-                console.log("signup");
+          try {
+            const resultSignUp = await dispatch(signUp({ email, password, username }));
+            if (signUp.fulfilled.match(resultSignUp)) {
+                const token = resultSignUp.payload;
+                localStorage.setItem("token", token);
                 navigate("/home");
-            }
-            catch (error) {
-                console.log("erreur");
-                setIsLoading(false);
-                return;
-            }
+            }             
+        } catch (error) {
+            setIsLoading(false);
+        }
         } else {
             setIsLoading(false);
             return;
@@ -102,40 +104,40 @@ function Signup() {
             <div className="bg-gray-800 p-8 rounded-2xl shadow-lg w-96">
               <h2 className="text-white text-3xl font-bold text-center mb-6">Create your account</h2>
               <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                    <TextField 
-                        label="username" 
-                        variant="outlined" 
-                        onChange={(e) => setUsername(e.target.value)}
-                        sx={{
-                            "& .MuiOutlinedInput-root": {
-                                "& fieldset": { 
-                                    borderColor: "white" 
-                                },
-                                "&:hover fieldset": { 
-                                    borderColor: "gray" 
-                                },
-                                "&.Mui-focused fieldset": { 
-                                    borderColor: "white" 
-                                },
-                                backgroundColor: "white",
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": {
-                                display: "none",
-                            },
-                        }}
-                    />                
-                      <TextField 
-                          placeholder="email"
-                          variant="outlined"
-                          InputLabelProps={{ shrink: false }}
-                          error={!!emailError}
-                          helperText={emailError}
-                          onChange={(e) => setEmail(e.target.value)}
-                          sx={{
-                              "& .MuiOutlinedInput-root": {
-                              "& fieldset": { borderColor: "white" },
-                              "&:hover fieldset": { borderColor: "gray" },
-                              "&.Mui-focused fieldset": { borderColor: "white" },
+                <TextField 
+                  label="username" 
+                  variant="outlined" 
+                  onChange={(e) => setUsername(e.target.value)}
+                  sx={{
+                      "& .MuiOutlinedInput-root": {
+                          "& fieldset": { 
+                              borderColor: "white" 
+                          },
+                          "&:hover fieldset": { 
+                              borderColor: "gray" 
+                          },
+                          "&.Mui-focused fieldset": { 
+                              borderColor: "white" 
+                          },
+                          backgroundColor: "white",
+                      },
+                      "& .MuiInputLabel-root.Mui-focused": {
+                          display: "none",
+                      },
+                  }}
+              />                
+                <TextField 
+                  placeholder="email"
+                  variant="outlined"
+                  InputLabelProps={{ shrink: false }}
+                  error={!!emailError}
+                  helperText={emailError}
+                  onChange={(e) => setEmail(e.target.value)}
+                  sx={{
+                      "& .MuiOutlinedInput-root": {
+                      "& fieldset": { borderColor: "white" },
+                      "&:hover fieldset": { borderColor: "gray" },
+                          "&.Mui-focused fieldset": { borderColor: "white" },
                               backgroundColor: "white",
                               },
                           }}
@@ -171,10 +173,10 @@ function Signup() {
                       }}
                       />
                       <button 
-                          type="submit"
-                          className="bg-white text-black text-lg font-semibold py-3 rounded-md hover:bg-gray-300 transition"
+                        type="submit"
+                        className="bg-white text-black text-lg font-semibold py-3 rounded-md hover:bg-gray-300 transition"
                       >
-                          Create my account
+                        Create my account
                 </button>
               </form>
             {isLoading && <CircularProgress/>}
@@ -185,7 +187,3 @@ function Signup() {
 }
 
 export default Signup;
-
-// olivier@mail.com
-// bestPassw0rd
-// TODO Alignement

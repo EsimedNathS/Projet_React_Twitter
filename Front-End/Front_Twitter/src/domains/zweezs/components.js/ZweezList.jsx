@@ -42,7 +42,6 @@ function ZweezList({ userId = null, sortMode }) {
     if (sortMode === "Follow") {
       fetchFollows();
     }
-
   }, [userId, sortMode]);
 
   // **4. Filtrage si mode "Follow"**
@@ -52,7 +51,15 @@ function ZweezList({ userId = null, sortMode }) {
     filteredZweezList = zweezList.filter(zweez => followingIds.includes(zweez.userId));
   }
 
-  // **5. Tri des Zweezs**
+  // **5. Filtrage des trois derniers jours pour Time_Like_Ratio**
+  const threeDaysAgo = new Date();
+  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+
+  if (sortMode === "Time_Like_Ratio") {
+    filteredZweezList = filteredZweezList.filter(zweez => new Date(zweez.time) >= threeDaysAgo);
+  }
+
+  // **6. Tri des Zweezs**
   const calculateLikeRatio = (zweez) => {
     const postTime = new Date(zweez.time);
     const minutesSincePost = (Date.now() - postTime) / 60000;

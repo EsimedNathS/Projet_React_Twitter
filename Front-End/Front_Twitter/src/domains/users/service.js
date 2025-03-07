@@ -1,9 +1,9 @@
-import { createNotification } from "../notifications/api";
+import { createNotificationService } from "../notifications/service";
 import { getUser, followUser, deleteFollow, getFollow, getFollowId, getFollower } from "./api";
 
 export async function followUserService(userId, followingId) {
     const resultFollow = await followUser(userId, followingId);
-    await createNotification(zweezOwnerId, userId, "follow");
+    await createNotificationService(followingId, userId, "follow");
     return resultFollow;
 }
 
@@ -24,11 +24,12 @@ export async function unfollowUserService(userId, followingId) {
 export async function getFollowService(userId, mainUserId = null) {
     try {
         const follows = await getFollow(userId);
+        const followingIds = follows.map(follow => follow.followingId);
         const followers = await getFollower(userId);
-        const followerIds = follows.map(follow => follow.followingId); // Liste des follows
+        const followersIds = followers.map(follow => follow.followingId);
 
-        // Récupération des infos des utilisateurs qui suivent `userId`
-        const followData = await Promise.all(followerIds.map(id => getUser(id)));
+        const followingData = await Promise.all(followingIds.map(id => getUser(id)));
+        const followersData = await Promise.all(followersIds.map(id => getUser(id)));
 
         // Vérification si `mainUserId` suit `userId`
         const isMainUserFollowing = mainUserId 
@@ -37,17 +38,16 @@ export async function getFollowService(userId, mainUserId = null) {
 
         return {
             followersCount: followers.length,
+            followersData: followersData,
             followsCount: follows.length,
-            followsData: followData, // Infos des utilisateurs qui suivent `userId`
-            isMainUserFollowing, // 🔹 Indique si mainUserId suit userId
+            followsData: followingData,
+            isMainUserFollowing,
         };
     } catch (error) {
         console.error("Erreur lors de la récupération des followers:", error);
         throw error;
     }
 }
-
-
 
 export async function getUserService(userId) {
     const userData = await getUser(userId);

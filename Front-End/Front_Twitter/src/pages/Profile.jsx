@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import imageZB from '../assets/Logo_Z_B.png';
 import { useNavigate, useParams } from "react-router";
-import { FaHome, FaBell, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import ZweezList from "../domains/zweezs/components.js/ZweezList";
 import FollowingList from "../domains/users/components.jsx/FollowingList";
+import FollowersList from "../domains/users/components.jsx/FollowersList";
 import { getUserService, getFollowService } from "../domains/users/service";
 import FollowButton from "../domains/users/components.jsx/FollowButton";
+import NavBar from "./components/NavBar";
 
 function Profile() {
   const { userId: profilId } = useParams();
   const [activeTab, setActiveTab] = useState("zweezs");
   const [username, setUsername] = useState("");
-  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followsInfo, setFollowsInfo] = useState([]);
@@ -26,7 +25,6 @@ function Profile() {
 
   const getFollow = async () => {
     try {
-
       let followData;
       if (profilId == user.id) {
         followData = await getFollowService(profilId);
@@ -34,6 +32,7 @@ function Profile() {
         followData = await getFollowService(profilId, user.id);
       }
       setFollowsInfo(followData);
+      console.log(followData);
 
       const isUserFollowing = followData.isMainUserFollowing;
       setIsFollowing(isUserFollowing);
@@ -58,26 +57,7 @@ function Profile() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <aside className="w-1/4 bg-black text-white p-6 flex flex-col gap-6 items-center">
-        <img src={imageZB} alt="Logo" className="w-12 h-12 object-cover mb-6" />
-
-        <button className="flex items-center gap-3 text-lg w-full justify-start px-4 py-2 border-2 border-transparent hover:text-gray-400" 
-          onClick={() => navigate("/home")}
-        >
-          <FaHome size={20} />
-          <span>Home</span>
-        </button>
-
-        <button className="flex items-center gap-3 text-lg w-full justify-start px-4 py-2 border-2 border-transparent hover:text-gray-400">
-          <FaBell size={20} />
-          <span>Notification</span>
-        </button>
-
-        <button className="flex items-center gap-3 text-lg w-full justify-start px-4 py-2 border-2 rounded font-bold bg-white text-black border-white">          
-          <FaUser size={20} className="text-black"/>
-          <span>Profile</span>
-        </button>
-      </aside>
+      <NavBar page="Profile"/>
 
       <div className="w-3/4 p-8">
         <div className="flex items-center gap-4 mb-3">
@@ -115,6 +95,16 @@ function Profile() {
             >
               Following
             </button>
+            <button 
+              className={`px-6 py-2 text-lg font-medium rounded-lg transition duration-200 ${
+                activeTab === "followers" 
+                  ? "bg-white text-blue-500 border-2 border-blue-500"
+                  : "bg-transparent text-gray-700 hover:bg-gray-200 hover:text-blue-500 border-2 border-transparent"
+              }`}
+              onClick={() => setActiveTab("followers")}
+            >
+              Followers
+            </button>
           </div>
         )}
 
@@ -126,6 +116,8 @@ function Profile() {
         )}
 
         {activeTab === "following" && <FollowingList followsInfo={followsInfo.followsData} />}
+
+        {activeTab === "followers" && <FollowersList followersInfo={followsInfo.followersData} />}
       </div>
     </div>
   );

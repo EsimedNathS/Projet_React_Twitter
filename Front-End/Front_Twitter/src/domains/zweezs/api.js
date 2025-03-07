@@ -32,6 +32,11 @@ export async function supZweez(zweezId) {
     }
 }
 
+export async function getZweez(zweezId) {
+    const response = await axiosInstance.get(`zweezs?id=${zweezId}`);
+    return response.data;
+}
+
 export async function modifZweez(zweezId, userId, username, newContent, time) {
     try {
       const response = await axiosInstance.put(`zweezs/${zweezId}`, {
@@ -58,6 +63,11 @@ export async function getZweezListUser(userId) {
     return response.data;
 }
 
+export async function getLikeId(userId, zweezId) {
+  const response = await axiosInstance.get(`likes?userId=${userId}&zweezId=${zweezId}`);
+  return response.data;
+}
+
 export async function addLikeZweez(userId, zweezId) {
     try {
         const response = await axiosInstance.post(
@@ -70,21 +80,13 @@ export async function addLikeZweez(userId, zweezId) {
     }
 }
 
-export async function supLikeZweez(userId, zweezId) {
+export async function supLikeZweez(likeId) {
     try {
-        const response = await axiosInstance.get(`likes?userId=${userId}&zweezId=${zweezId}`);
-
-        if (response.data.length === 0) {
-            return { success: false, message: "Like non trouvé" };
-        }
-        const likeId = response.data[0].id;
-
-        await axiosInstance.delete(`likes/${likeId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-
+      console.log("suppres")
+        await axiosInstance.delete(`likes/${likeId}`);
         return { success: true, message: "Like supprimé" };
     } catch (error) {
         return { success: false, message: "Erreur serveur" };
     }
 }
+

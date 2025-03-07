@@ -2,7 +2,11 @@ import { signup, verifyToken } from "./api";
 import { jwtDecode } from "jwt-decode";
 
 export async function signupService(email, password, username) {
-    const token = await signup(email, password, username);
+    console.log(email);
+    console.log( password);
+    console.log(username);
+    const response = await signup(email, password, username);
+    return response.accessToken;
 }
 
 export function getIdByToken(token){

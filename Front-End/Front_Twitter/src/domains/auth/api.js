@@ -4,13 +4,27 @@ const axiosInstance = axios.create({
     baseURL: 'http://localhost:3000/',
 });
 
-export async function signup(email, password) {
-    const response = await axiosInstance.post('register', {
-        email: email,
-        password: password
-    });
-    return response.data;
+export async function signup(email, password, username) {
+    console.log("Email:", email);
+    console.log("Password:", password);
+    console.log("Username:", username);
+
+    try {
+        const response = await axiosInstance.post('/users', {
+            email: email,
+            password: password,
+            username: username
+        });
+
+        console.log("Response:", response.data);
+        return response.data;
+    } catch (error) {
+        console.error("Erreur Signup:", error.response?.data || error.message);
+        throw error;
+    }
 }
+
+
 
 export async function login(email, password, username) {
     const response = await axiosInstance.post('login', {
